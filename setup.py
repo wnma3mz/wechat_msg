@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="wechat_msg",
-    version="0.1",
+    version="0.2",
     author="wnma3mz",
     author_email="",
     description="wechat send message",

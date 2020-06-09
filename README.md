@@ -3,7 +3,7 @@
 企业微信发送消息接口，Python
 
 ```python
-from WeChat import Authorize, Send, Upload
+from wechat_msg.WeChat import Authorize, Send, Upload
 
 corpid = ''
 corpsecret = ''
