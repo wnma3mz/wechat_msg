@@ -5,7 +5,7 @@ import os
 
 class Authorize(object):
     # Get Token
-    def __init__(self, corpid, corpsecret, proxies=None):
+    def __init__(self, corpid, corpsecret, proxies={"http": None, "https": None}):
         # corpid    : wechat id
         # corpsecret: wechat secret
         self.corpid = corpid
@@ -25,7 +25,7 @@ class Authorize(object):
 
 class Send(object):
     # Send Message (text, image, video, voice...)
-    def __init__(self, agentid, token, data=None, proxies=None):
+    def __init__(self, agentid, token, data=None, proxies={"http": None, "https": None}):
         # agentid: application id
         # token  : Authorize get token
         self.agentid = agentid
