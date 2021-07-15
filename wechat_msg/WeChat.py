@@ -1,6 +1,7 @@
 # coding: utf-8
 import requests
 import os
+import time
 
 
 class Authorize(object):
@@ -22,10 +23,25 @@ class Authorize(object):
         ).json()
         return json_["access_token"]
 
+    def read_token(self, agentid, token_f):
+        if (
+            os.path.isfile(token_f)
+            and time.time() - os.path.getmtime(token_f) < 3600 * 3
+        ):
+            with open(token_f, "r", encoding="utf-8") as f:
+                d = f.readlines()
+            agentid, token_ = d[0].strip(), d[1].strip()
+        else:
+            agentid, token_ = self.get_token()
+            with open(token_f, "w", encoding="utf-8") as f:
+                f.write(str(agentid) + "\n" + str(token_))
+
 
 class Send(object):
     # Send Message (text, image, video, voice...)
-    def __init__(self, agentid, token, data=None, proxies={"http": None, "https": None}):
+    def __init__(
+        self, agentid, token, data=None, proxies={"http": None, "https": None}
+    ):
         # agentid: application id
         # token  : Authorize get token
         self.agentid = agentid
